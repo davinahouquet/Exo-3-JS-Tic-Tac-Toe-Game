@@ -17,6 +17,14 @@ h1{
     margin-bottom: 0px;
     font-size: 5em;
 }
+h2{
+    color: white;
+    text-align: center;
+    font-family: sans-serif;
+    margin-bottom: 0px;
+    font-size: 1em;
+    opacity: 80%;
+}
 
 .container {
     display: flex;
@@ -53,3 +61,33 @@ h1{
 .carre:nth-child(2n){
     margin-left: 5px;
 }
+
+.carre:hover{
+    background-color: rgb(176, 151, 216);
+}
+
+.clicked{
+    cursor: default;
+
+
+}
+
+/* Define styles for X player */
+.board-x .current-player {
+    color: red;
+  }
+  
+  /* Define styles for O player */
+  .board-o .current-player {
+    color: blue;
+  }
+
+  #rick{
+    width: 200px;
+    display: none;
+  }
+
+  #morty{
+    width: 200px;
+    display: none;
+  }
