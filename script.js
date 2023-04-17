@@ -7,11 +7,6 @@ const player1 = "X";
 const player2 = "O";
 let currentPlayer = player1;
 
-const turnMessage = document.createElement("p");
-turnMessage.id = "turn-message";
-turnMessage.innerText = `${currentPlayer}'s turn`;
-document.querySelector(".score").appendChild(turnMessage);
-
 const squares = [];
 
 for(let i = 1; i <= 9; i++){
@@ -108,7 +103,6 @@ const winningMessage = document.getElementById("winningMessage");
     if (square.innerText === '') {
       square.innerText = currentPlayer;
       square.classList.add('clicked');
-      square.removeEventListener('click', handleClick); // Remove the event listener
-      handleResultValidation();
+      square.removeEventListener('click', handleClick);
     }
   }
