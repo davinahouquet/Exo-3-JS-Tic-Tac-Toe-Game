@@ -1,3 +1,6 @@
+:root{
+    --text-dark: rgb(68, 55, 45); 
+}
 
 *{
     box-sizing: border-box;
@@ -7,12 +10,10 @@
 
 body{
     background-image: url(./assets/background.jpg);
-    width: 100%;
-    height: auto;
 }
 
 h1{
-    color: white;
+    color:  var(--text-dark);
     text-align: center;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     margin-bottom: 0px;
@@ -42,13 +43,14 @@ h1{
     width: 200px;
     height: 200px;
     background: white;
-    opacity: 70%;
+    opacity: 90%;
     font-size: 2em;
     text-align: center;
     margin: 5px;
     border-radius: 5px;
     cursor : pointer;
-    color: white;
+    color: var(--text-dark);
+    font-size: 11em;
 }
 
 .carre:nth-child(2n){
@@ -56,7 +58,7 @@ h1{
 }
 
 .carre:hover{
-    background-color: rgb(176, 151, 216);
+    background-color: rgb(223, 193, 152);
 }
 
 .clicked{
@@ -78,4 +80,13 @@ h1{
     width: 100px;
     height:100px;
     display: none;
+ }
+
+ .affichage{
+    width: 640px;
+    height: 70px;
+    margin-bottom: 10px;
+    background-color: white;
+    opacity: 90%;
+    border-radius: 5px;
  }
