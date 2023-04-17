@@ -14,15 +14,12 @@ for(let i = 1; i <= 9; i++){
     newCarre.innerText = ""
     square.appendChild(newCarre)
 
-    squares.push(newCarre);
-
     newCarre.addEventListener("click", function(){
         if(newCarre.classList.contains("clicked")){
-            
+            return;
         } else {
-            newCarre.classList.add("clicked")
+            newCarre.classList.add("clicked");
         }
-        newCarre.classList.add("clicked");
 
         //Un symbole sur deux 
         newCarre.innerText = currentPlayer;
@@ -104,13 +101,7 @@ const winningMessage = document.getElementById("winningMessage");
     if (square.innerText === '') {
       square.innerText = currentPlayer;
       square.classList.add('clicked');
+      square.removeEventListener('click', handleClick); // Remove the event listener
       handleResultValidation();
     }
   }
-  
-  document.querySelectorAll('.carre').forEach(square => square.addEventListener('click', handleClick));
-
-
-
-
-//--------Affichage des messages---------------------------------
