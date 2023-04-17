@@ -52,10 +52,7 @@ h1{
     cursor : pointer;
     color: var(--text-dark);
     font-size: 11em;
-}
-
-.carre:nth-child(2n){
-    margin-left: 5px;
+    font-family: sans-serif;
 }
 
 .carre:hover{
@@ -66,16 +63,7 @@ h1{
     cursor: default;
 }
 
-.board-x .current-player {
-    color: red;
-  }
-  
-
-  .board-o .current-player {
-    color: blue;
-  }
-
-  .winning-message{
+.score{
     display: flex;
     width: 640px;
     height: auto;
@@ -83,12 +71,9 @@ h1{
     background-color: white;
     opacity: 80%;
     border-radius: 5px;
-    align-items: center;
-    font-size: 5rem;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     overflow: hidden;
  }
-
+ 
  button{
     border-radius : 5px;
     font-size: 1rem;
@@ -103,8 +88,4 @@ h1{
     background-color: rgb(212, 250, 242);
     color: var(--text-dark);
     border-color: white;
- }
-
- .winning-message.show{
-    display: flex;
  }
