@@ -35,7 +35,7 @@ h1{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    gap: 10px;
+    gap: 5px;
     flex-wrap: wrap;
     max-width: 800px;
 }
@@ -56,7 +56,7 @@ h1{
 }
 
 .carre:hover{
-    background-color: rgb(212, 250, 242);
+    background-color: rgb(161, 161, 161);
 }
 
 .clicked{
@@ -67,7 +67,7 @@ h1{
     display: flex;
     justify-content: right;
     align-items: center;
-    width: 640px;
+    width: 630px;
     height: 50px;
     margin-bottom: 10px;
     background-color: white;
@@ -95,10 +95,16 @@ h1{
  }
 
  #winningMessageText{
-    padding: 170px;
+    width: 450px;
+    height: 50px;
     font-family: sans-serif;
     color: black;
-    text-align: center;
-    align-items: center;
-    font-size: 2em;;
+    font-size: 1em;
+    justify-content: left;
+ }
+
+ #turn-message{
+    
+    font-family: sans-serif;
+    color: var(--text-dark);
  }

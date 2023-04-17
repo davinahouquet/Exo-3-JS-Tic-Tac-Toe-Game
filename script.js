@@ -1,11 +1,16 @@
-//-------Création des cases -----------------------------------------
+//-------Création des cases -----------------------------------------//
 const carre = document.createElement("div")
 carre.classList.add("carre")
 
-//-------Déclaration des joueurs ------------------------------------
+//-------Déclaration des joueurs ------------------------------------//
 const player1 = "X";
 const player2 = "O";
 let currentPlayer = player1;
+
+const turnMessage = document.createElement("p");
+turnMessage.id = "turn-message";
+turnMessage.innerText = `${currentPlayer}'s turn`;
+document.querySelector(".score").appendChild(turnMessage);
 
 const squares = [];
 
@@ -33,7 +38,7 @@ for(let i = 1; i <= 9; i++){
         });
     }
 
-//--------Création bouton---------------------------------
+//--------Création bouton---------------------------------//
 const button = document.createElement("button");
 button.innerText = "Restart";
 button.addEventListener("click", function () {
@@ -47,8 +52,10 @@ button.addEventListener("click", function () {
 
 document.querySelector(".score").appendChild(button);
 
-//--------Combinaisons gagnantes---------------------------------
+//--------Combinaisons gagnantes---------------------------------//
+
 function checkWin(squares) {
+
 const winningCombinations = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], // horizontales
     [0, 3, 6], [1, 4, 7], [2, 5, 8], // verticales
@@ -90,7 +97,7 @@ const winningMessage = document.getElementById("winningMessage");
     }
   }
   
-  //--------Vérifier si victoire ou nul ---------------------------
+  //--------Vérifier si nul ---------------------------//
   function isDraw() {
     const squares = document.querySelectorAll('.carre');
     return Array.from(squares).every(square => square.innerText !== '');
