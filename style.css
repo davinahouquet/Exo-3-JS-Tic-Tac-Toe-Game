@@ -1,3 +1,4 @@
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -5,7 +6,7 @@
 }
 
 body{
-    background-image: url(bg1.png);
+    background-image: url(./assets/background.jpg);
     width: 100%;
     height: auto;
 }
@@ -16,14 +17,6 @@ h1{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     margin-bottom: 0px;
     font-size: 5em;
-}
-h2{
-    color: white;
-    text-align: center;
-    font-family: sans-serif;
-    margin-bottom: 0px;
-    font-size: 1em;
-    opacity: 80%;
 }
 
 .container {
@@ -69,7 +62,6 @@ h2{
 .clicked{
     cursor: default;
 
-
 }
 
 /* Define styles for X player */
@@ -82,12 +74,8 @@ h2{
     color: blue;
   }
 
-  #rick{
-    width: 200px;
+ img{
+    width: 100px;
+    height:100px;
     display: none;
-  }
-
-  #morty{
-    width: 200px;
-    display: none;
-  }
+ }

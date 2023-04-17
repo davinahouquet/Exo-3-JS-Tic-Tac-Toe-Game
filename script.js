@@ -15,7 +15,18 @@ const board = [
 ];
 
 const squares = document.querySelectorAll(".carre");
+const current = document.querySelector("#current-player");
 
+function switchPlayer(){
+    currentPlayer = currentPlayer === PLAYER_1 ? PLAYER_2 : PLAYER_1;
+    updateCurrentPlayer();
+}
+
+function updateCurrentPlayer(){
+    current.innerText = currentPlayer;
+    current.classList.remove("board-x", "board-o");
+    current.classList.add(`board-${currentPlayer.toLocaleLowerCase()}`);
+}
 
 for(let i = 1; i <= 9; i++){
     const newCarre = carre.cloneNode();
@@ -25,7 +36,7 @@ for(let i = 1; i <= 9; i++){
 
     newCarre.addEventListener("click", function(){
         if(newCarre.classList.contains("clicked")){
-            newCarre.classList.remove("clicked")
+
         } else {
             newCarre.classList.add("clicked")
         }
@@ -36,3 +47,6 @@ for(let i = 1; i <= 9; i++){
     })
     square.appendChild(newCarre)
 }
+
+//--------Combinaisons gagnantes---------------------------
+
