@@ -64,16 +64,21 @@ h1{
 }
 
 .score{
+    display: flex;
+    justify-content: right;
+    align-items: center;
     width: 640px;
-    height: auto;
+    height: 50px;
     margin-bottom: 10px;
     background-color: white;
     opacity: 80%;
     border-radius: 5px;
     overflow: hidden;
+    padding: 20px;
  }
  
  button{
+    justify-content: right;
     border-radius : 5px;
     font-size: 1rem;
     background-color: white;
@@ -90,7 +95,10 @@ h1{
  }
 
  #winningMessageText{
+    padding: 170px;
     font-family: sans-serif;
     color: black;
     text-align: center;
+    align-items: center;
+    font-size: 2em;;
  }
