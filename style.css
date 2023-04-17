@@ -64,7 +64,6 @@ h1{
 }
 
 .score{
-    display: flex;
     width: 640px;
     height: auto;
     margin-bottom: 10px;
@@ -88,4 +87,10 @@ h1{
     background-color: rgb(212, 250, 242);
     color: var(--text-dark);
     border-color: white;
+ }
+
+ #winningMessageText{
+    font-family: sans-serif;
+    color: black;
+    text-align: center;
  }
