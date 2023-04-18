@@ -1,8 +1,8 @@
-//-------Création des cases -----------------------------------------//
+//-------Création des cases ------------------------------------//
 const carre = document.createElement("div")
 carre.classList.add("carre")
 
-//-------Déclaration des joueurs ------------------------------------//
+//-------Déclaration des joueurs ------------------------------//
 const player1 = "X";
 const player2 = "O";
 let currentPlayer = player1;
@@ -24,20 +24,19 @@ for(let i = 1; i <= 9; i++){
         
         //Un symbole sur deux 
         newCarre.innerText = currentPlayer;
-        currentPlayer = currentPlayer === player1 ? player2 : player1;
-        console.log(currentPlayer)
 
         var resultat = checkWin();
         console.log(resultat);
         if (resultat){
             squares.forEach((square) => {
-              square.classList.add("gagné");
+              square.classList.add("gagne");
             });
             console.log(checkWin);
           }
+          
+          currentPlayer = currentPlayer === player2 ? player1 : player2;
         });
     }
-
 //--------Création bouton---------------------------------//
 const button = document.createElement("button");
 button.innerText = "Rejouer";
@@ -52,35 +51,31 @@ button.addEventListener("click", function () {
 
 document.querySelector(".score").appendChild(button);
 
-//--------Combinaisons gagnantes---------------------------------//
-
+//--------Vérifier victoire + combinaisons gagnantes--------//
 function checkWin() {
 
-const winningCombinations = [
+  const winningCombinations = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], //horizontales
-    [0, 3, 6], [1, 4, 7], [2, 5, 8],  //verticales
-    [0, 4, 8], [2, 4, 6],           //diagonales
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], //verticales
+    [0, 4, 8], [2, 4, 6],            //diagonales
   ];
-  
-  for (let i = 0; i < 9; i++) {
-    // const combinations = winningCombinations[i];
-      if(winningCombinations[i] ===  [0, 1, 2]){
-    // const a = squares[winningCombinations[0]];
-    // const b = squares[winningCombinations[1]];
-    // const c = squares[winningCombinations[2]];
-    // const d = squares[winningCombinations[3]];
-    // const e = squares[winningCombinations[4]];
-    // const f = squares[winningCombinations[5]];
-    // const g = squares[winningCombinations[6]];
-    // const h = squares[winningCombinations[7]];
+    
+  //Boucler dans winningcombinaisons puis dans les index et préciser victoire seulement si c'est le même joueur
 
-    // if (a !== ""|| b !== "" || c !== "" || d !==" " || e !=="" || f !=="" || g !=="" || h !=="" || i !=="") {
-      return true;
+  for (let i = 0; i < winningCombinations.length; i++) {
+
+    let combination = winningCombinations[i];
+
+    for(let j = 0; j < combination.length; j++){
+      if(combination == currentPlayer){
+        return true;
+      } 
     }
   }
+  
   return false;
-}
-const winningMessage = document.getElementById("winningMessage");
+} 
+  
 
   //--------Vérifier si nul ---------------------------//
   function isDraw() {
@@ -88,11 +83,14 @@ const winningMessage = document.getElementById("winningMessage");
     return Array.from(squares).every(square => square.innerText !== '');
   }
   
+  const winningMessage = document.getElementById("winningMessage");
+  
   function handleResultValidation() {
-    const winner = checkWin();
-    if (winner) {
 
-      // Afficher gagnant
+    const winner = checkWin(currentPlayer);
+    
+    // Afficher gagnant
+    if (winner) {
       document.getElementById("winningMessageText").innerText = `Partie terminée. ${winner} gagne !`;
       document.querySelectorAll(".carre").forEach(square => square.removeEventListener("click", handleClick));
     } else if (isDraw()) {
@@ -102,7 +100,7 @@ const winningMessage = document.getElementById("winningMessage");
     } else {
 
       // Un message affiche le message "C'est au tour de X ou O"//
-      currentPlayer = currentPlayer === player1 ? player2 : player1;
+      currentPlayer = currentPlayer === player2 ? player1 : player2;
       document.getElementById("turn-message") = `${currentPlayer}, à ton tour !`;
     }
   }
