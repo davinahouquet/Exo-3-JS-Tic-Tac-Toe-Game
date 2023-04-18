@@ -66,6 +66,9 @@ h1{
     cursor: default;
 }
 
+.gagné{
+    background-color: green;
+}
 .score{
     display: flex;
     justify-content: right;
