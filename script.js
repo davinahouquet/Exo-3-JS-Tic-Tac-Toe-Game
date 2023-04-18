@@ -74,14 +74,13 @@ function checkWin() {
     let combination = winningCombinations[i];
 
     for(let j = 0; j < combination.length; j++){
-      //faire trois fois la boucle, return si pas les mêmes symboles du currentPlayer
-
+      
       if(grille[combination[j]] === currentPlayer){
         
-      }        
-      } break;
-    } return true;
-  } return false;
+      } 
+    } 
+    return false;
+  }
 } 
 
   //--------Vérifier si nul ---------------------------//
