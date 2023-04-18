@@ -52,57 +52,56 @@ document.querySelector(".score").appendChild(button);
 function checkWin(squares) {
 
 const winningCombinations = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], // horizontales
-    [0, 3, 6], [1, 4, 7], [2, 5, 8], // verticales
-    [0, 4, 8], [2, 4, 6] // diagonales
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],  
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],  
+    [0, 4, 8], [2, 4, 6]              
   ];
   for (let i = 0; i < winningCombinations.length; i++) {
-    const combo = winningCombinations[i];
-    const a = squares[combo[0]].innerText;
-    const b = squares[combo[1]].innerText;
-    const c = squares[combo[2]].innerText;
+
+    const combinations = winningCombinations[i];
+    const a = squares[combinations[0]].innerText;
+    const b = squares[combinations[1]].innerText;
+    const c = squares[combinations[2]].innerText;
+
     if (a !== "" && a === b && b === c) {
-      winningMessageText.innerText = `${a} wins!`;
       return true;
     }
   }
-
   return false;
 }
 const winningMessage = document.getElementById("winningMessage");
 
-
+  //--------Vérifier si nul ---------------------------//
+  function isDraw() {
+    const squares = document.querySelectorAll(".carre");
+    return Array.from(squares).every(square => square.innerText !== '');
+    
+  }
   
   function handleResultValidation() {
     const winner = checkWin();
     if (winner) {
 
-      // There's a winner
-      document.getElementById('winningMessageText').innerText = `${winner} wins!`;
-      document.querySelectorAll('.carre').forEach(square => square.removeEventListener('click', handleClick));
+      // Afficher gagnant
+      document.getElementById("winningMessageText").innerText = `${winner} wins!`;
+      document.querySelectorAll(".carre").forEach(square => square.removeEventListener("click", handleClick));
     } else if (isDraw()) {
 
-      // It's a draw
-      document.getElementById('winningMessageText').innerText = 'Draw!';
+      // Afficher match nul
+      document.getElementById("winningMessageText").innerText = "Draw!";
     } else {
 
-      // Game is still in progress
+      // Afficher quel joueur à la main
       currentPlayer = currentPlayer === player1 ? player2 : player1;
-      document.getElementById('winningMessageText').innerText = `${currentPlayer}'s turn`;
+      document.getElementById("turn-message") = `${currentPlayer}'s turn`;
     }
-  }
-  
-  //--------Vérifier si nul ---------------------------//
-  function isDraw() {
-    const squares = document.querySelectorAll('.carre');
-    return Array.from(squares).every(square => square.innerText !== '');
   }
   
   function handleClick(event) {
     const square = event.target;
-    if (square.innerText === '') {
+    if (square.innerText === "") {
       square.innerText = currentPlayer;
-      square.classList.add('clicked');
-      square.removeEventListener('click', handleClick);
+      square.classList.add("clicked");
+      square.removeEventListener("click", handleClick);
     }
   }
