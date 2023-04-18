@@ -6,37 +6,45 @@ carre.classList.add("carre")
 const player1 = "X";
 const player2 = "O";
 let currentPlayer = player1;
+let grille = [];
 
 const squares = [];
 
-for(let i = 1; i <= 9; i++){
+function startGame(){
+  grille = []; //Initialisation des tables: essentielle pour y entrer des informations
+  for(let i = 0; i < 9 ; i++){
+    grille[i] = null;
+  }
+}
+  for(let i = 1; i <= 9; i++){
     const newCarre = carre.cloneNode();
     newCarre.innerText = ""
     square.appendChild(newCarre) //square fantôme
 
 
-    newCarre.addEventListener("click", function(){
-        if(newCarre.classList.contains("clicked")){
-            return;
-        } else {
-            newCarre.classList.add("clicked");
-        }
-        
-        //Un symbole sur deux 
-        newCarre.innerText = currentPlayer;
+  newCarre.addEventListener("click", function(){
+    if(newCarre.classList.contains("clicked")){
+    //On ne pourra plus cliquer sur la case pour en changer la valeur une  fois  que  X  ou  O  y  est  placé//
+    return;
+    } else {
+      grille[i] = currentPlayer; //Mise à jour de la grille lorsqu'un joueur clique dessus ->prend sa valeur
+      newCarre.classList.add("clicked");
+    } 
+    //Un symbole sur deux 
+      newCarre.innerText = currentPlayer;
 
-        var resultat = checkWin();
-        console.log(resultat);
-        if (resultat){
-            squares.forEach((square) => {
-              square.classList.add("gagne");
-            });
-            console.log(checkWin);
-          }
+  var resultat = checkWin();
+    // console.log(resultat);
+      if (resultat){
+      squares.forEach((square) => {
+      square.classList.add("gagne");
+      });
+    // console.log(checkWin);
+      }
           
-          currentPlayer = currentPlayer === player2 ? player1 : player2;
-        });
-    }
+    currentPlayer = currentPlayer === player1 ? player2 : player1;
+      });
+}
 //--------Création bouton---------------------------------//
 const button = document.createElement("button");
 button.innerText = "Rejouer";
@@ -57,59 +65,49 @@ function checkWin() {
   const winningCombinations = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], //horizontales
     [0, 3, 6], [1, 4, 7], [2, 5, 8], //verticales
-    [0, 4, 8], [2, 4, 6],            //diagonales
+    [0, 4, 8], [2, 4, 6],             //diagonales
   ];
     
-  //Boucler dans winningcombinaisons puis dans les index et préciser victoire seulement si c'est le même joueur
-
+  //Pour boucler dans winningcombinaisons puis dans les index et préciser victoire seulement si c'est le même joueur
   for (let i = 0; i < winningCombinations.length; i++) {
 
     let combination = winningCombinations[i];
 
     for(let j = 0; j < combination.length; j++){
-      if(combination == currentPlayer){
-        return true;
-      } 
-    }
-  }
-  
-  return false;
+      //faire trois fois la boucle, return si pas les mêmes symboles du currentPlayer
+
+      if(grille[combination[j]] === currentPlayer){
+        
+      }        
+      } break;
+    } return true;
+  } return false;
 } 
-  
 
   //--------Vérifier si nul ---------------------------//
-  function isDraw() {
-    const squares = document.querySelectorAll(".carre");
-    return Array.from(squares).every(square => square.innerText !== '');
-  }
+function isDraw() {
+  const squares = document.querySelectorAll(".carre");
+  return Array.from(squares).every(square => square.innerText !== '');
+}
   
-  const winningMessage = document.getElementById("winningMessage");
+const winningMessage = document.getElementById("winningMessage");
   
-  function handleResultValidation() {
+function handleResultValidation() {
 
-    const winner = checkWin(currentPlayer);
-    
-    // Afficher gagnant
+  const winner = checkWin(currentPlayer);
+ 
+  // Afficher gagnant
     if (winner) {
       document.getElementById("winningMessageText").innerText = `Partie terminée. ${winner} gagne !`;
       document.querySelectorAll(".carre").forEach(square => square.removeEventListener("click", handleClick));
+
+  // Afficher match nul
     } else if (isDraw()) {
-
-      // Afficher match nul
       document.getElementById("winningMessageText").innerText = "Partie terminée. Match nul!";
-    } else {
 
-      // Un message affiche le message "C'est au tour de X ou O"//
+  // Un message affiche le message "C'est au tour de X ou O"//
+    } else {
       currentPlayer = currentPlayer === player2 ? player1 : player2;
       document.getElementById("turn-message") = `${currentPlayer}, à ton tour !`;
     }
-  }
-  //On ne pourra plus cliquer sur la case pour en changer la valeur une  fois  que  X  ou  O  y  est  placé//
-  function handleClick(event) {
-    const square = event.target;
-    if (square.innerText === "") {
-      square.innerText = currentPlayer;
-      square.classList.add("clicked");
-      square.removeEventListener("click", handleClick);
-    }
-  }
+}
