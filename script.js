@@ -45,10 +45,13 @@ const button = document.createElement("button");
 button.innerText = "Rejouer";
 button.addEventListener("click", function () {
   const squares = document.querySelectorAll(".carre");
-  squares.forEach((square) => {
+  squares.forEach((square, index) => {
     square.classList.remove("clicked");
     square.innerText = "";
+    grille[index] = null; // remet la grille a null
   });
+  currentPlayer = player1; // remet le currentPlayer a player1
+  turnMessage.innerHTML = "Joueur " + currentPlayer + ", à ton tour !"; // reset the turn message
   button.classList.add("clicked");
 });
 
