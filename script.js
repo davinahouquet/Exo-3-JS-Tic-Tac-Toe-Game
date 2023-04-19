@@ -35,11 +35,9 @@ function startGame(){
       newCarre.innerText = currentPlayer;
 
     checkWin();
-     
-  
-    currentPlayer = currentPlayer === player2 ? player1 : player2;
-    turnMessage.innerHTML = "Joueur " + currentPlayer + ", à ton tour !";
-      });
+    handleResultValidation();
+    
+  });
 }
 //--------Création bouton---------------------------------//
 const button = document.createElement("button");
@@ -56,7 +54,7 @@ button.addEventListener("click", function () {
 document.querySelector(".score").appendChild(button);
 
 //--------Vérifier victoire + combinaisons gagnantes--------//
-function checkWin(currentPlayer) {
+function checkWin() {
 
   const winningCombinations = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], //horizontales
@@ -72,18 +70,39 @@ function checkWin(currentPlayer) {
 
     for(let j = 0; j < combination.length; j++){
       if (grille[combination[j]] !== currentPlayer) {
-        console.log(grille[combination[j]]);
+      
         victoire = false;
         break; //sort de la boucle for dès que la combinaison est fausse pour optimiser le code
       }
     }
     //Si la combinaison est juste, victoire reste à true et retourne checkWin true
     if(victoire){
-      turnMessage.innerHTML = "Partie terminée ! "+ currentPlayer +" remporte la partie.";
       return true;
     }
   }
   //Si aucune combinaison gagnante n'est trouvée, retourne checkWin false
-  turnMessage.innerHTML = "Match nul";
   return false;
+}
+function isDraw() {
+  const squares = document.querySelectorAll(".carre");
+  return Array.from(squares).every(square => square.innerText !== '');
+}
+
+function handleResultValidation() {
+
+  const winner = checkWin();
+ 
+  // Afficher gagnant
+    if (winner) {
+      turnMessage.innerHTML = "Partie terminée ! "+ currentPlayer +" remporte la partie.";
+
+  // Afficher match nul
+    } else if (isDraw()) { //si la grille n'inclut pas de cases vides et quil n'y pas de victoire alors match nul
+      turnMessage.innerHTML = "Partie terminée. Match nul!";
+
+  // Un message affiche le message "C'est au tour de X ou O"//
+    } else {
+      currentPlayer = currentPlayer === player1 ? player2 : player1;
+      turnMessage.innerHTML = "Joueur " + currentPlayer + ", à ton tour !";
+    }
 }
