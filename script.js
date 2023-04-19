@@ -16,7 +16,7 @@ function startGame(){
   }
 }
 
-  for(let i = 1; i <= 9; i++){
+  for(let i = 0; i < 9; i++){
 
     const newCarre = carre.cloneNode();
     newCarre.innerText = ""
@@ -30,13 +30,14 @@ function startGame(){
     } else {
       grille[i] = currentPlayer; //Mise à jour de la grille lorsqu'un joueur clique dessus ->prend sa valeur
       newCarre.classList.add("clicked");
+      
     } 
     //Un symbole sur deux 
       newCarre.innerText = currentPlayer;
 
     checkWin();
     handleResultValidation();
-    
+    console.log(grille)
   });
 }
 //--------Création bouton---------------------------------//
@@ -69,8 +70,9 @@ function checkWin() {
     let victoire = true; //initialise la victoire sur vrai sur chaque combinaison
 
     for(let j = 0; j < combination.length; j++){
-      if (grille[combination[j]] !== currentPlayer) {
       
+      if (grille[combination[j]] !== currentPlayer) {
+        
         victoire = false;
         break; //sort de la boucle for dès que la combinaison est fausse pour optimiser le code
       }
