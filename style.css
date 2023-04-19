@@ -67,8 +67,9 @@ h1{
 }
 
 .gagne{
-    background-color: green;
+    background-color: rgb(118, 190, 166);
 }
+
 .score{
     display: flex;
     justify-content: right;
