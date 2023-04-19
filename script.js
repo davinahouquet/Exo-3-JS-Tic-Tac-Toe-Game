@@ -41,8 +41,9 @@ function startGame(){
       });
     // console.log(checkWin);
       }
-          
-    currentPlayer = currentPlayer === player1 ? player2 : player1;
+  
+    currentPlayer = currentPlayer === player2 ? player1 : player2;
+    turnMessage.innerHTML = "Joueur " + currentPlayer + ", à ton tour !";
       });
 }
 //--------Création bouton---------------------------------//
@@ -72,15 +73,24 @@ function checkWin() {
   for (let i = 0; i < winningCombinations.length; i++) {
 
     let combination = winningCombinations[i];
+    let victoire = true; //initialise la victoire sur vrai sur chaque combinaison
 
-    for(let j = 0; j < combination.length; j++){
+      for(let j = 0; j < combination.length; j++){
       
-      if(grille[combination[j]] === currentPlayer){
-        
+        //Si la combinaison est fausse, victoire = false
+        if(grille[combination[j]] !== currentPlayer){
+          victoire = false;
+          break; //sort de la boucle for dès que la combinaison est fausse pour optimiser le code
       } 
     } 
-    return false;
+    
+    //Si la combinaison est juste, victoire reste à true et retourne checkWin true
+    if(victoire){
+      return true;
+    }
   }
+  //Si aucune combinaison gagnante n'est trouvée, retourne checkWin false
+  return false;
 } 
 
   //--------Vérifier si nul ---------------------------//

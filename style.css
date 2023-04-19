@@ -109,7 +109,12 @@ h1{
     justify-content: left;
  }
 
- #turn-message{
+ #turnMessage{
+    display: flex;
+    justify-content: center;
+    width: 450px;
+    height: 50px;
+    align-items: center;
     font-size: 1em;
     font-family: sans-serif;
     color: var(--text-dark);
