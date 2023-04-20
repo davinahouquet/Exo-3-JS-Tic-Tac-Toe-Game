@@ -50,7 +50,6 @@ button.addEventListener("click", function () {
     square.innerText = "";
     grille[index] = null; // remet la grille a null
   });
-  currentPlayer = player1; // remet le currentPlayer a player1
   turnMessage.innerHTML = "Joueur " + currentPlayer + ", à ton tour !"; // reset the turn message
   button.classList.add("clicked");
 });
@@ -100,11 +99,11 @@ function handleResultValidation() {
   // Afficher gagnant
     if (winner) {
       turnMessage.innerHTML = "Partie terminée ! "+ currentPlayer +" remporte la partie.";
-
+      currentPlayer = currentPlayer === player1 ? player2 : player1;
   // Afficher match nul
     } else if (isDraw()) { //si la grille n'inclut pas de cases vides et quil n'y pas de victoire alors match nul
       turnMessage.innerHTML = "Partie terminée. Match nul!";
-
+      currentPlayer = currentPlayer === player1 ? player2 : player1;
   // Un message affiche le message "C'est au tour de X ou O"//
     } else {
       currentPlayer = currentPlayer === player1 ? player2 : player1;
